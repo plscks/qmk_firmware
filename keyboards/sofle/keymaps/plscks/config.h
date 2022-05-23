@@ -7,5 +7,3 @@ for more options.
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 #define USER_PRINT
-#undef MATRIX_COL_PINS 
-#define MATRIX_COL_PINS { NO_PIN, F6, F7, B1, B3, B2, B6 }

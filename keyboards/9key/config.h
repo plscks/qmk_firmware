@@ -15,9 +15,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#ifndef CONFIG_H
+#define CONFIG_H
 
 #include "config_common.h"
+
+/* USB Device descriptor parameter */
+#define VENDOR_ID       0xFEED
+#define PRODUCT_ID      0x0007
+#define DEVICE_VER 		0x0001
+#define MANUFACTURER    Bishop Keyboards
+#define PRODUCT         9Key
 
 /* key matrix size */
 #define MATRIX_ROWS 3
@@ -37,3 +45,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DIODE_DIRECTION COL2ROW
 
 #define TAPPING_TERM 200
+
+#endif

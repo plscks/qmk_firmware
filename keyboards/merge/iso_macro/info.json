@@ -2,6 +2,8 @@
     "keyboard_name": "ISO Macro",
     "url": "",
     "maintainer": "duoshock",
+    "width": 5.75,
+    "height": 2,
     "layouts": {
         "LAYOUT": {
             "layout": [

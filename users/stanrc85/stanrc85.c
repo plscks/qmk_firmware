@@ -45,7 +45,7 @@ void ctl_copy_reset (qk_tap_dance_state_t *state, void *user_data) {
 }
 
 #if defined(HAS_ROTARY)
-  bool encoder_update_user(uint8_t index, bool clockwise) {
+  void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) { /* First encoder */
         if (clockwise) {
             tap_code(KC_VOLD);
@@ -53,7 +53,6 @@ void ctl_copy_reset (qk_tap_dance_state_t *state, void *user_data) {
             tap_code(KC_VOLU);
         }
     }
-    return true;
   }
 #endif
 
@@ -68,7 +67,7 @@ void lock_unlock (qk_tap_dance_state_t *state, void *user_data) {
     tap_code16(KC_CAD);
     #if defined(HAS_INDICATORS)
       led_user = 0;
-      #if defined(KEYBOARD_sneakbox_aliceclone) || defined(KEYBOARD_mechlovin_adelais_standard_led_arm_rev4_stm32f303)
+      #if defined(KEYBOARD_sneakbox_aliceclone)
         led_user = 1;
       #endif
       writePin(INDICATOR_PIN_0, !led_user);
@@ -76,7 +75,7 @@ void lock_unlock (qk_tap_dance_state_t *state, void *user_data) {
       writePin(INDICATOR_PIN_1, !led_user);
       wait_ms(200);
       writePin(INDICATOR_PIN_2, !led_user);
-    #endif
+    #endif      
       break;
     case SINGLE_HOLD:
       break;
@@ -84,7 +83,7 @@ void lock_unlock (qk_tap_dance_state_t *state, void *user_data) {
     tap_code16(KC_LOCK);
     #if defined(HAS_INDICATORS)
       led_user = 1;
-      #if defined(KEYBOARD_sneakbox_aliceclone) || defined(KEYBOARD_mechlovin_adelais_standard_led_arm_rev4_stm32f303)
+      #if defined(KEYBOARD_sneakbox_aliceclone)
         led_user = 0;
       #endif
       writePin(INDICATOR_PIN_2, !led_user);
@@ -92,7 +91,7 @@ void lock_unlock (qk_tap_dance_state_t *state, void *user_data) {
       writePin(INDICATOR_PIN_1, !led_user);
       wait_ms(200);
       writePin(INDICATOR_PIN_0, !led_user);
-    #endif
+    #endif    
       break;
   }
 }

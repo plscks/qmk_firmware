@@ -2,6 +2,8 @@
     "keyboard_name": "Alpine65",
     "url": "",
     "maintainer": "Gondolindrim",
+    "width": 16.25,
+    "height": 5.25,
     "layouts": {
         "LAYOUT": {
             "layout": [

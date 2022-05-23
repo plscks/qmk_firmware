@@ -102,6 +102,9 @@ class InfoJSONEncoder(QMKJSONEncoder):
             elif key == 'maintainer':
                 return '12maintainer'
 
+            elif key in ('height', 'width'):
+                return '40' + str(key)
+
             elif key == 'community_layouts':
                 return '97community_layouts'
 
@@ -146,13 +149,7 @@ class KeymapJSONEncoder(QMKJSONEncoder):
                 if key == 'JSON_NEWLINE':
                     layer.append([])
                 else:
-                    if isinstance(key, dict):
-                        # We have a macro
-
-                        # TODO: Add proper support for nicely formatting keymap.json macros
-                        layer[-1].append(f'{self.encode(key)}')
-                    else:
-                        layer[-1].append(f'"{key}"')
+                    layer[-1].append(f'"{key}"')
 
             layer = [f"{self.indent_str*indent_level}{', '.join(row)}" for row in layer]
 

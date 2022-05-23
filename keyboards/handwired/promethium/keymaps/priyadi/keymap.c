@@ -140,7 +140,7 @@ enum planck_keycodes {
 #ifndef FAUXCLICKY_ENABLE
   FC_TOG,
 #endif
-#ifndef BLUETOOTH_BLUEFRUIT_LE
+#ifndef MODULE_ADAFRUIT_BLE
   OUT_BT,
 #endif
   RGBDEMO,
@@ -1264,7 +1264,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void set_output_user(uint8_t output) {
-#ifdef BLUETOOTH_BLUEFRUIT_LE
+#ifdef MODULE_ADAFRUIT_BLE
   switch(output) {
     case OUTPUT_USB:
       led_set_output_usb();
@@ -1288,7 +1288,7 @@ void matrix_init_user() {
 #endif
 
   // auto detect output on init
-#ifdef BLUETOOTH_BLUEFRUIT_LE
+#ifdef MODULE_ADAFRUIT_BLE
   uint8_t output = auto_detect_output();
   if (output == OUTPUT_USB) {
     set_output(OUTPUT_USB);
