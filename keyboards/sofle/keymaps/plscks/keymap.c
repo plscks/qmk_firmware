@@ -491,7 +491,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 					tap_code(KC_LEFT);
 					break;
 				case _LOWER:
-					tap_code(KC_DOWN);
+					tap_code(KC_UP);
 					break;
 			}
         } else {
@@ -503,7 +503,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 					tap_code(KC_RIGHT);
 					break;
 				case _LOWER:
-					tap_code(KC_UP);
+					tap_code(KC_DOWN);
 					break;
 			}
         }
