@@ -7,3 +7,4 @@ for more options.
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 #define USER_PRINT
+#define PREVENT_STUCK_KEYS
