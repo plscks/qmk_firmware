@@ -105,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * |      |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   |  |
      * |------+------+------+------+------+------|  MUTE |    | RESET |------+------+------+------+------+------|
-     * |      |  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  |      |
+     * | RESET|  =   |  -   |  +   |   {  |   }  |-------|    |-------|   [  |   ]  |   ;  |   :  |   \  |      |
      * `-----------------------------------------/       /     \      \-----------------------------------------'
      *            | LCTR | LGUI | LALT |LOWER | /Space  /       \  _   \  |RAISE | RALT | RGUI | RCTR |
      *            |      |      |      |      |/       /         \      \ |      |      |      |      |
@@ -115,12 +115,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_F12,
         KC_PASTA, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PIPE,
         _______, KC_EQL, KC_MINS, KC_PLUS, KC_LCBR, KC_RCBR, QK_BOOTLOADER, KC_MPRV, KC_LBRC, KC_RBRC, KC_SCLN, KC_COLN, KC_BSLS, _______,
-        _______, _______, _______, _______, _______, KC_UNDS, _______, _______, _______, _______),
+        QK_BOOTLOADER, _______, _______, _______, _______, KC_UNDS, _______, _______, _______, _______),
     /* RAISE
      * ,----------------------------------------.                    ,-----------------------------------------.
      * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
-     * | Esc  | Ins  | Pscr | Menu | RPLC |      |                    | PGUP | PWrd |  Up  | NWrd | DLine| Bspc |
+     * | Esc  | Ins  | Pscr | Menu | RPLC |RESET |                    | PGUP | PWrd |  Up  | NWrd | DLine| Bspc |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | Tab  | LAt  | LCtl |LShift| FIND | Caps |-------.    ,-------| PGDN | Left | Down | Rigth|  Del | Bspc |
      * |------+------+------+------+------+------|  MUTE |    | NEXT  |------+------+------+------+------+------|
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *            `----------------------------------'           '------''---------------------------'
      */
     [_RAISE] = LAYOUT(_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_ESC, KC_INS, KC_PSCR, KC_APP, KC_RPLC, XXXXXXX, KC_PGUP, KC_PRVWD, KC_UP, KC_NXTWD, KC_DLINE, KC_BSPC,
+    KC_ESC, KC_INS, KC_PSCR, KC_APP, KC_RPLC, QK_BOOTLOADER, KC_PGUP, KC_PRVWD, KC_UP, KC_NXTWD, KC_DLINE, KC_BSPC,
     _______, KC_LALT, KC_LCTL, KC_LSFT, KC_FIND, KC_CAPS, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_DEL, KC_BSPC,
     _______, KC_UNDO, KC_CUT, KC_COPY, KC_PASTE, XXXXXXX, _______, KC_MNXT, XXXXXXX, KC_LSTRT, XXXXXXX, KC_LEND, XXXXXXX, _______,
     _______, _______, _______, _______, KC_UNDS, _______, _______, _______, _______, _______),
