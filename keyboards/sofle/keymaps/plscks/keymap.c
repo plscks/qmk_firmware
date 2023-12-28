@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_BOOTLOADER, _______, _______, _______, _______, KC_UNDS, _______, _______, _______, _______),
     /* RAISE
      * ,----------------------------------------.                    ,-----------------------------------------.
-     * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
+     * |      |      |      |      |      |      |                    |      |      |      |      |      |      |{}
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
      * | Esc  | Ins  | Pscr | Menu | RPLC |RESET |                    | PGUP | PWrd |  Up  | NWrd | DLine| Bspc |
      * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______)};
 
-#ifdef OLED_DRIVER_ENABLE
+#ifdef OLED_ENABLE
 
 #define IDLE_FRAMES 7
 #define IDLE_SPEED 10 // below this wpm value your animation will idle
@@ -272,7 +272,7 @@ static void print_status_narrow(void) {
             oled_write_ln_P(PSTR("Work"), 0);
             break;
         case _COLEMAKDH:
-            oled_write_ln_P(PSTR("CmkDH"), 0);
+            oled_write_P(PSTR("CmkDH"), 0);
             break;
         default:
             oled_write_P(PSTR("Undef"), 0);
@@ -309,12 +309,13 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return rotation;
 }
 
-void oled_task_user(void) {
+bool oled_task_user(void) {
     if (is_keyboard_master()) {
         print_status_narrow();
     } else {
         render_logo();
     }
+    return false;
 }
 
 #endif
