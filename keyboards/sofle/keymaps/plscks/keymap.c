@@ -3,6 +3,7 @@
 enum sofle_layers {
     /* _M_XYZ = Mac Os, _W_XYZ = Win/Linux */
     _QWERTY,
+    _COLEMAKDH,
     _WORK,
     _LOWER,
     _RAISE,
@@ -11,7 +12,22 @@ enum sofle_layers {
 
 // https://github.com/aseiger/qmk_firmware/blob/aseiger_dev/keyboards/sofle/keymaps/aseiger/keymap.c
 
-enum custom_keycodes { KC_QWERTY = SAFE_RANGE, KC_WORK, KC_LOWER, KC_RAISE, KC_ADJUST, KC_PRVWD, KC_NXTWD, KC_LSTRT, KC_LEND, KC_DLINE, KC_RPLC, KC_ENCMOD, KC_PASTA };
+enum custom_keycodes {
+    KC_QWERTY = SAFE_RANGE,
+    KC_COLEMAKDH,
+    KC_WORK,
+    KC_LOWER,
+    KC_RAISE,
+    KC_ADJUST,
+    KC_PRVWD,
+    KC_NXTWD,
+    KC_LSTRT,
+    KC_LEND,
+    KC_DLINE,
+    KC_RPLC,
+    KC_ENCMOD,
+    KC_PASTA
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
@@ -30,11 +46,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      *            `----------------------------------'           '------''---------------------------'
      */
 
-    [_QWERTY] = LAYOUT(KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_GRV,
-    KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS,
-    KC_LSFT, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
-    KC_LCTRL, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_MUTE, KC_MPLY, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
-    KC_CAPS, KC_ENCMOD, KC_LALT, KC_LOWER, KC_SPC, KC_ENT, KC_BSPC, KC_RAISE, KC_RGUI, KC_RCTRL),
+    [_QWERTY] = LAYOUT(
+    KC_ESC,     KC_1,   KC_2,   KC_3,   KC_4,   KC_5,                      KC_6,    KC_7,   KC_8,   KC_9,   KC_0,   KC_GRV,
+    KC_TAB,     KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                      KC_Y,    KC_U,   KC_I,   KC_O,   KC_P,   KC_BSLS,
+    KC_LSFT,    KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                      KC_H,    KC_J,   KC_K,   KC_L,   KC_SCLN, KC_QUOT,
+    KC_LCTRL,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B, KC_MUTE,    KC_MPLY, KC_N,    KC_M,   KC_COMM, KC_DOT, KC_SLSH, KC_RSFT,
+                KC_CAPS, KC_ENCMOD, KC_LALT, KC_LOWER, KC_SPC,    KC_ENT, KC_BSPC, KC_RAISE, KC_RGUI, KC_RCTRL
+    ),
+    /*
+    * COLEMAKDH
+    * ,-----------------------------------------.                    ,-----------------------------------------.
+    * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+    * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+    * | TAB  |   Q  |   W  |   F  |   P  |   B  |                    |   J  |   L  |   U  |   Y  |   ;  |  \   |
+    * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+    * | LSH  |   A  |   R  |   S  |   T  |   G  |-------.    ,-------|   M  |   N  |   E  |   I  |   O  |  '   |
+    * |------+------+------+------+------+------|  MUTE |    |  PLAY |------+------+------+------+------+------|
+    * |LCTRL |   Z  |   X  |   C  |   D  |   V  |-------|    |-------|   K  |   H  |   ,  |   .  |   /  |RShift|
+    * `-----------------------------------------/       /     \      \-----------------------------------------'
+    *            | CAPS |MOUSE4| LALT |LOWER | /Space  /       \Enter \  | Bspc |RAISE | R OS | RCTR |
+    *            |      |      |      |      |/       /         \      \ |      |      |      |      |
+    *            `----------------------------------'           '------''---------------------------'
+    */
+
+    [_COLEMAKDH] = LAYOUT(
+    KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,  KC_GRV,
+    KC_TAB,   KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,                      KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN,  KC_BSLS,
+    KC_LSFT,  KC_A,   KC_R,    KC_S,    KC_T,    KC_G,                      KC_M,    KC_N,    KC_E,    KC_I,    KC_O,  KC_QUOT,
+    KC_LCTRL, KC_Z,   KC_X,    KC_C,    KC_D,    KC_V, KC_MUTE,     KC_MPLY,KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                KC_CAPS, KC_ENCMOD, KC_LALT, KC_LOWER, KC_SPC,      KC_ENT, KC_BSPC, KC_RAISE, KC_RGUI, KC_RCTRL
+    ),
     /*
      * WORK
     * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -230,6 +271,9 @@ static void print_status_narrow(void) {
         case _WORK:
             oled_write_ln_P(PSTR("Work"), 0);
             break;
+        case _COLEMAKDH:
+            oled_write_ln_P(PSTR("CmkDH"), 0);
+            break;
         default:
             oled_write_P(PSTR("Undef"), 0);
     }
@@ -297,6 +341,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_WORK);
             }
             return false;
+        case KC_COLEMAKDH:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_COLEMAKDH);
+            }
+            return false;
         case KC_LOWER:
             if (record->event.pressed) {
                 layer_on(_LOWER);
@@ -331,6 +380,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if ((mod_state & MOD_BIT(KC_LCTL)) == MOD_BIT(KC_LCTL)) {
                 switch (get_highest_layer(default_layer_state)) {
                     case _QWERTY:
+                    case _COLEMAKDH:
                     case _RAISE:
                     case _ADJUST:
                     case _LOWER:
@@ -523,6 +573,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 			switch (get_highest_layer(layer_state)) {
 				case _WORK:
 				case _QWERTY:
+                case _COLEMAKDH:
 				case _RAISE:
 				case _ADJUST:
                     tap_code(KC_LEFT);
@@ -539,6 +590,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             switch (get_highest_layer(layer_state)) {
 				case _WORK:
 				case _QWERTY:
+                case _COLEMAKDH:
 				case _RAISE:
 				case _ADJUST:
                     tap_code(KC_RIGHT);
